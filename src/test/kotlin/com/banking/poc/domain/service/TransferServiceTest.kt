@@ -27,13 +27,6 @@ class TransferServiceTest {
         val origin = Wallet.testData()
         val destination = Wallet.testData()
         val money = Money.testData()
-        val transferToSave = Transfer.testData(
-            id = null,
-            origin = origin,
-            destination = destination,
-            money = money,
-            status = TransferStatus.PENDING
-        )
         val pendingTransfer = Transfer.testData(
             origin = origin,
             destination = destination,
@@ -58,13 +51,6 @@ class TransferServiceTest {
         val origin = Wallet.testData()
         val destination = Wallet.testData()
         val money = Money.testData()
-        val transferToSave = Transfer.testData(
-            id = null,
-            origin = origin,
-            destination = destination,
-            money = money,
-            status = TransferStatus.PENDING
-        )
         val errorTransfer = Transfer.testData(
             origin = origin,
             destination = destination,

@@ -57,7 +57,7 @@ class UserServiceTest {
     @Test
     fun whenFindUser_shouldReturnTheUser() {
         // given
-        val userId: Long = 1L
+        val userId = 1L
         val user: User = User.testData(userId = userId)
         every { userRepository.findUserById(userId) } returns (user)
         // when
@@ -96,12 +96,12 @@ class UserServiceTest {
     @Test
     fun whenFindUsernameOfNonExistingUser_shouldThrowUsernameNotFoundException() {
         // given
-        val username: String = "username"
+        val username = "username"
         every {
             userRepository.findUsername(username)
         } returns null
         // when
-        val result = Assertions.assertThrows(UsernameNotFoundException::class.java) {
+        Assertions.assertThrows(UsernameNotFoundException::class.java) {
             userService.findUsername(username)
         }
         // then
@@ -111,7 +111,7 @@ class UserServiceTest {
     @Test
     fun whenFindUsernameOfExistingUser_shouldReturnTheUser() {
         // given
-        val username: String = "username"
+        val username = "username"
         val user: User = User.testData(username = username)
         every {
             userRepository.findUsername(username)

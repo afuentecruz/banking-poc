@@ -1,6 +1,6 @@
 # Banking system (proof of concept)
 This is an example of a banking system. The services provides an API which can perform:
-- User management (creation, login).
+- User creation and authentication.
 - Wallets creation, deposit and withdrawal.
 - Consult wallet balances and movements.
 - Transfers between wallets.

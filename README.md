@@ -1,12 +1,12 @@
 # Banking system (proof of concept)
-This is an example of a basic banking system, the project provides an API which can perform:
+This is an example of a banking system. The services provides an API which can perform:
 - User management (creation, login).
 - Wallets creation, deposit and withdrawal.
-- Consult wallet balance and movements.
+- Consult wallet balances and movements.
 - Transfers between wallets.
 - AML and domain validation rules.
 
-The project provides an approach to hexagonal architecture with DDD implementation, based on a real world example. 
+The project provides an approach to hexagonal architecture, based on a real world example.
 
 The current version implements an H2 database repository via outbound port interfaces implementations. Use cases entry points is provided by inbound rest controller implementations. 
 ### Stack 
@@ -20,7 +20,7 @@ http://localhost:8080/swagger-ui/index.html
 
 In order to try swagger endpoints you must provide a valid token: 
 
-First, create an user
+First, create a new user
 ```
 curl --location 'localhost:8080/users/registry' \
 --header 'Content-Type: application/json' \
@@ -33,19 +33,20 @@ Then authenticate
 ```
 curl --location 'localhost:8080/login' \
 --header 'Content-Type: application/json' \
---header 'Authorization: Basic Og==' \
 --data-raw '{
     "username" : "first@mail.com", 
     "password" : "password"
 }'
 ```
 ## Security
-Note all api endpoints are secured using spring security but `/users/registry` and `/login`, in order to operate with the remaining endpoints you must include the bearer token provided in the login response
+All endpoints are secured with spring-security and JWT. `/users/registry` and `/login` are exceptions.
+
+In order to consume the remaining endpoints a valid bearer token must be provided via authorization header value. 
 
 ## Postman collection
 A complete postman collection is available under `src/main/resources/` 
 
-The bearer token is managed through a script after login request and stored in an environment variable for both initial users (A & B) to make this part transparent 
+The bearer token is managed through a script after login request and stored in an environment variable for both initial users (A & B) to make the authentication transparent and easy to use. 
 
 ## Database
 This service uses H2 for persistence, for database management visit http://localhost:8080/h2-console

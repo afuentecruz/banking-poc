@@ -8,7 +8,6 @@ This is an example of a banking system. The services provides an API which can p
 
 The project provides an approach to hexagonal architecture, based on a real world example.
 
-The current version implements an H2 database repository via outbound port interfaces implementations. Use cases entry points is provided by inbound rest controller implementations. 
 ### Stack 
 - Kotlin 1.9.2
 - SpringBoot 3.2.1

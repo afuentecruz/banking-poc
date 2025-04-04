@@ -1,6 +1,6 @@
 package com.banking.poc.domain.service
 
-import com.banking.poc.application.service.WalletService
+import com.banking.poc.application.port.outbound.repository.WalletRepositoryOutbound
 import com.banking.poc.domain.exception.UserWalletNotFoundException
 import com.banking.poc.domain.exception.WalletCurrencyNotFoundException
 import com.banking.poc.domain.exception.WalletNotFoundException
@@ -10,8 +10,7 @@ import com.banking.poc.domain.model.user.User
 import com.banking.poc.domain.model.wallet.Wallet
 import com.banking.poc.domain.model.wallet.addAmount
 import com.banking.poc.domain.model.wallet.minusAmount
-import com.banking.poc.domain.repository.WalletRepository
-import com.banking.poc.utils.testData
+import com.banking.poc.utils.data.testData
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
@@ -21,9 +20,9 @@ import java.math.BigDecimal
 
 class WalletServiceTest {
 
-    private var walletRepository: WalletRepository = mockk()
+    private var walletRepository: WalletRepositoryOutbound = mockk()
 
-    private val walletService: WalletService = WalletServiceImpl(walletRepository)
+    private val walletService: WalletService = WalletService(walletRepository)
 
     @Test
     fun whenCreateWalletOfExistingUser_shouldReturnTheCreatedWallet() {

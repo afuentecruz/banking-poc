@@ -1,12 +1,12 @@
 package com.banking.poc.application.usecase.wallet
 
-import com.banking.poc.application.service.MovementService
-import com.banking.poc.application.service.WalletService
+import com.banking.poc.domain.dto.wallet.WalletDepositRequest
+import com.banking.poc.domain.dto.wallet.WalletResponse
+import com.banking.poc.domain.dto.wallet.fromDomain
 import com.banking.poc.domain.model.money.Money
 import com.banking.poc.domain.model.movement.MovementType
-import com.banking.poc.infrastructure.rest.wallet.dto.WalletDepositRequest
-import com.banking.poc.infrastructure.rest.wallet.dto.WalletResponse
-import com.banking.poc.infrastructure.rest.wallet.dto.fromDomain
+import com.banking.poc.domain.service.MovementService
+import com.banking.poc.domain.service.WalletService
 
 class WalletDepositUseCase(
     private val walletService: WalletService,

@@ -1,6 +1,6 @@
 package com.banking.poc.infrastructure.security.filter
 
-import com.banking.poc.infrastructure.rest.user.dto.LoginRequest
+import com.banking.poc.domain.dto.user.UserLoginRequest
 import com.banking.poc.infrastructure.security.dto.UserSecurity
 import com.banking.poc.infrastructure.security.service.TokenService
 import com.fasterxml.jackson.databind.ObjectMapper
@@ -21,7 +21,7 @@ class JwtAuthenticationFilter(
 ) : UsernamePasswordAuthenticationFilter() {
 
     override fun attemptAuthentication(req: HttpServletRequest, response: HttpServletResponse): Authentication {
-        val credentials = ObjectMapper().readValue(req.inputStream, LoginRequest::class.java)
+        val credentials = ObjectMapper().readValue(req.inputStream, UserLoginRequest::class.java)
         val auth = UsernamePasswordAuthenticationToken(
             credentials.username, credentials.password, Collections.singleton(SimpleGrantedAuthority("user"))
         )

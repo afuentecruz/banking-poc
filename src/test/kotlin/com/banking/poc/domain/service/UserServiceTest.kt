@@ -1,12 +1,11 @@
 package com.banking.poc.domain.service
 
-import com.banking.poc.application.service.UserService
+import com.banking.poc.application.port.outbound.repository.UserRepositoryOutbound
 import com.banking.poc.domain.exception.UserNotFoundException
 import com.banking.poc.domain.exception.UsernameAlreadyExistsException
 import com.banking.poc.domain.exception.UsernameNotFoundException
 import com.banking.poc.domain.model.user.User
-import com.banking.poc.domain.repository.UserRepository
-import com.banking.poc.utils.testData
+import com.banking.poc.utils.data.testData
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
@@ -15,9 +14,9 @@ import org.junit.jupiter.api.Test
 
 class UserServiceTest {
 
-    private var userRepository: UserRepository = mockk()
+    private var userRepository: UserRepositoryOutbound = mockk()
 
-    private val userService: UserService = UserServiceImpl(userRepository)
+    private val userService: UserService = UserService(userRepository)
 
     @Test
     fun whenFindAllUsersButNoUsersInRepository_shouldReturnEmptyList() {

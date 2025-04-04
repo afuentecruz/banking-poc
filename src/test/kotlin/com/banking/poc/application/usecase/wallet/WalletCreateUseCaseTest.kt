@@ -1,11 +1,11 @@
 package com.banking.poc.application.usecase.wallet
 
-import com.banking.poc.application.service.UserService
-import com.banking.poc.application.service.WalletService
 import com.banking.poc.domain.exception.UsernameNotFoundException
 import com.banking.poc.domain.model.user.User
 import com.banking.poc.domain.model.wallet.Wallet
-import com.banking.poc.utils.testData
+import com.banking.poc.domain.service.UserService
+import com.banking.poc.domain.service.WalletService
+import com.banking.poc.utils.data.testData
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify

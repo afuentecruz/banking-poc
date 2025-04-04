@@ -1,10 +1,10 @@
 package com.banking.poc.application.usecase.user
 
-import com.banking.poc.application.service.UserService
+import com.banking.poc.domain.dto.user.RegisterUserRequest
+import com.banking.poc.domain.dto.user.toDomain
 import com.banking.poc.domain.model.user.User
-import com.banking.poc.infrastructure.rest.user.dto.RegisterUserRequest
-import com.banking.poc.infrastructure.rest.user.dto.toDomain
-import com.banking.poc.utils.testData
+import com.banking.poc.domain.service.UserService
+import com.banking.poc.utils.data.testData
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify

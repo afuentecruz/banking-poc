@@ -1,15 +1,15 @@
 package com.banking.poc.application.usecase.wallet
 
-import com.banking.poc.application.service.MovementService
-import com.banking.poc.application.service.WalletService
+import com.banking.poc.domain.dto.wallet.WalletDepositRequest
 import com.banking.poc.domain.exception.WalletCurrencyNotFoundException
 import com.banking.poc.domain.model.money.Money
 import com.banking.poc.domain.model.money.MoneyCurrency
 import com.banking.poc.domain.model.movement.Movement
 import com.banking.poc.domain.model.movement.MovementType
 import com.banking.poc.domain.model.wallet.Wallet
-import com.banking.poc.infrastructure.rest.wallet.dto.WalletDepositRequest
-import com.banking.poc.utils.testData
+import com.banking.poc.domain.service.MovementService
+import com.banking.poc.domain.service.WalletService
+import com.banking.poc.utils.data.testData
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify

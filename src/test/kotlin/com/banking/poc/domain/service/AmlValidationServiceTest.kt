@@ -1,8 +1,5 @@
 package com.banking.poc.domain.service
 
-import com.banking.poc.application.service.AmlValidationService
-import com.banking.poc.application.service.UserService
-import com.banking.poc.application.service.WalletService
 import com.banking.poc.domain.exception.ForbiddenWalletUsageException
 import com.banking.poc.domain.exception.InsufficientFundsException
 import com.banking.poc.domain.exception.SameWalletsException
@@ -11,7 +8,7 @@ import com.banking.poc.domain.model.money.Money
 import com.banking.poc.domain.model.money.MoneyCurrency
 import com.banking.poc.domain.model.user.User
 import com.banking.poc.domain.model.wallet.Wallet
-import com.banking.poc.utils.testData
+import com.banking.poc.utils.data.testData
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
@@ -25,7 +22,7 @@ class AmlValidationServiceTest {
     private var userService: UserService = mockk()
 
     private val amlValidationService: AmlValidationService =
-        AmlValidationServiceImpl(walletService, userService)
+        AmlValidationService(walletService, userService)
 
     @Test
     fun whenCheckWalletOwnershipOfANonExistingUsername_shouldThrowUsernameNotFoundException() {

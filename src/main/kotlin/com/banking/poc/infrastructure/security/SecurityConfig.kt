@@ -31,8 +31,6 @@ class SecurityConfig(
     @Bean
     fun filterChain(http: HttpSecurity): SecurityFilterChain {
         val authenticationManager = authManager(http)
-        // Put your endpoint to create/sign, otherwise spring will secure it as
-        // well you won't be able to do any request
         http.authorizeHttpRequests {
             it.requestMatchers(HttpMethod.POST, "/users/registry", "/login").permitAll()
             it.requestMatchers("/h2-console/**").permitAll()

@@ -1,12 +1,11 @@
 package com.banking.poc.domain.service
 
-import com.banking.poc.application.service.TransferService
+import com.banking.poc.application.port.outbound.repository.TransferRepositoryOutbound
 import com.banking.poc.domain.model.money.Money
 import com.banking.poc.domain.model.transfer.Transfer
 import com.banking.poc.domain.model.transfer.TransferStatus
 import com.banking.poc.domain.model.wallet.Wallet
-import com.banking.poc.domain.repository.TransferRepository
-import com.banking.poc.utils.testData
+import com.banking.poc.utils.data.testData
 import io.mockk.every
 import io.mockk.mockk
 import org.junit.jupiter.api.Assertions
@@ -15,10 +14,10 @@ import org.springframework.dao.DataIntegrityViolationException
 
 class TransferServiceTest {
 
-    private var transferRepository: TransferRepository = mockk()
+    private var transferRepositoryPort: TransferRepositoryOutbound = mockk()
 
-    private val transferService: TransferService = TransferServiceImpl(
-        transferRepository
+    private val transferService: TransferService = TransferService(
+        transferRepositoryPort
     )
 
     @Test
@@ -34,7 +33,7 @@ class TransferServiceTest {
             status = TransferStatus.PENDING
         )
         val completedTransfer = pendingTransfer.copy(status = TransferStatus.COMPLETED)
-        every { transferRepository.save(any()) } returns pendingTransfer andThen completedTransfer
+        every { transferRepositoryPort.save(any()) } returns pendingTransfer andThen completedTransfer
         // then
         val result = transferService.doTransfer(origin, destination, money)
         // then
@@ -57,7 +56,7 @@ class TransferServiceTest {
             money = money,
             status = TransferStatus.ERROR
         )
-        every { transferRepository.save(any()) } throws DataIntegrityViolationException("test data integrity violation exception") andThen errorTransfer
+        every { transferRepositoryPort.save(any()) } throws DataIntegrityViolationException("test data integrity violation exception") andThen errorTransfer
         // then
         val result = transferService.doTransfer(origin, destination, money)
         // then

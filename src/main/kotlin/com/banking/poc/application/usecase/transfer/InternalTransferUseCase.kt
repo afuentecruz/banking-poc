@@ -1,18 +1,19 @@
 package com.banking.poc.application.usecase.transfer
 
-import com.banking.poc.application.service.AmlValidationService
-import com.banking.poc.application.service.TransferService
-import com.banking.poc.application.service.WalletService
+import com.banking.poc.application.usecase.movement.DepositMovementUseCase
 import com.banking.poc.application.usecase.movement.WithdrawMovementUseCase
+import com.banking.poc.domain.dto.transfer.TransferRequest
 import com.banking.poc.domain.model.money.Money
 import com.banking.poc.domain.model.money.MoneyCurrency
 import com.banking.poc.domain.model.transfer.TransferStatus
 import com.banking.poc.domain.model.wallet.Wallet
-import com.banking.poc.infrastructure.rest.transfer.dto.TransferRequest
+import com.banking.poc.domain.service.AmlValidationService
+import com.banking.poc.domain.service.TransferService
+import com.banking.poc.domain.service.WalletService
 
 class InternalTransferUseCase(
     private val withdrawMovementUseCase: WithdrawMovementUseCase,
-    private val depositMovementUseCase: com.banking.poc.application.usecase.movement.DepositMovementUseCase,
+    private val depositMovementUseCase: DepositMovementUseCase,
     private val walletService: WalletService,
     private val transferService: TransferService,
     private val amlValidationService: AmlValidationService

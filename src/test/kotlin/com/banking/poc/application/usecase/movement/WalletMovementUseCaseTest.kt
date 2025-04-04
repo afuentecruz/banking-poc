@@ -1,11 +1,11 @@
 package com.banking.poc.application.usecase.movement
 
-import com.banking.poc.application.service.AmlValidationService
-import com.banking.poc.application.service.MovementService
 import com.banking.poc.domain.exception.ForbiddenWalletUsageException
 import com.banking.poc.domain.model.movement.Movement
 import com.banking.poc.domain.model.movement.MovementType
-import com.banking.poc.utils.testData
+import com.banking.poc.domain.service.AmlValidationService
+import com.banking.poc.domain.service.MovementService
+import com.banking.poc.utils.data.testData
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify

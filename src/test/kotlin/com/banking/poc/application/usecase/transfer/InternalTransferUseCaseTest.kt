@@ -1,9 +1,7 @@
 package com.banking.poc.application.usecase.transfer
 
-import com.banking.poc.application.service.AmlValidationService
-import com.banking.poc.application.service.TransferService
-import com.banking.poc.application.service.WalletService
 import com.banking.poc.application.usecase.movement.WithdrawMovementUseCase
+import com.banking.poc.domain.dto.transfer.TransferRequest
 import com.banking.poc.domain.exception.ForbiddenWalletUsageException
 import com.banking.poc.domain.exception.InsufficientFundsException
 import com.banking.poc.domain.exception.SameWalletsException
@@ -16,8 +14,10 @@ import com.banking.poc.domain.model.transfer.Transfer
 import com.banking.poc.domain.model.transfer.TransferStatus
 import com.banking.poc.domain.model.user.User
 import com.banking.poc.domain.model.wallet.Wallet
-import com.banking.poc.infrastructure.rest.transfer.dto.TransferRequest
-import com.banking.poc.utils.testData
+import com.banking.poc.domain.service.AmlValidationService
+import com.banking.poc.domain.service.TransferService
+import com.banking.poc.domain.service.WalletService
+import com.banking.poc.utils.data.testData
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify

@@ -1,15 +1,15 @@
 package com.banking.poc.application.usecase.wallet
 
-import com.banking.poc.application.service.AmlValidationService
-import com.banking.poc.application.service.UserService
-import com.banking.poc.application.service.WalletService
+import com.banking.poc.domain.dto.wallet.WalletBalanceResponse
 import com.banking.poc.domain.exception.ForbiddenWalletUsageException
 import com.banking.poc.domain.exception.UserWalletNotFoundException
 import com.banking.poc.domain.exception.WalletNotFoundException
 import com.banking.poc.domain.model.user.User
 import com.banking.poc.domain.model.wallet.Wallet
-import com.banking.poc.infrastructure.rest.wallet.dto.WalletBalanceResponse
-import com.banking.poc.utils.testData
+import com.banking.poc.domain.service.AmlValidationService
+import com.banking.poc.domain.service.UserService
+import com.banking.poc.domain.service.WalletService
+import com.banking.poc.utils.data.testData
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
@@ -116,39 +116,4 @@ class WalletDetailsUseCaseTest {
         verify(exactly = 1) { amlValidationService.checkWalletOwnership(user.username, wallet.id!!) }
         verify(exactly = 1) { walletService.findWallet(wallet.id!!) }
     }
-    /*
-        @Test
-        fun getWalletMovementsFromANonUserWallet_shouldThrowForbiddenWalletUsageException() {
-
-            // given
-            val username: String = "username"
-            val walletId: Long = 1L
-            every {
-                amlValidationService.checkWalletOwnership(username, walletId)
-            } throws ForbiddenWalletUsageException()
-            // when
-            val result = Assertions.assertThrows(ForbiddenWalletUsageException::class.java) {
-                walletDetailsUseCase.getWalletMovements(username, walletId)
-            }
-            // then
-            Assertions.assertEquals("You are not allowed to use this wallet", result.message)
-            verify(exactly = 1) { amlValidationService.checkWalletOwnership(username, walletId) }
-        }
-
-          @Test
-          fun getWalletMovementsFromAUserWallet_shouldReturnTheMovementsList() {
-
-                // given
-                val user: User = User.testData()
-                val wallet: Wallet = Wallet.testData()
-                val movements: List<Movement> = listOf(Movement.testData())
-
-                every { amlValidationService.checkWalletOwnership(user.username, wallet.id!!) } returns Unit
-                every { movementService.findWalletMovements(wallet.id!!) } returns movements
-                // when
-                val result = walletDetailsUseCase.getWalletMovements(user.username, wallet.id!!)
-                // then
-                verify(exactly = 1) { movementService.findWalletMovements(wallet.id!!) }
-                verify(exactly = 1) { amlValidationService.checkWalletOwnership(user.username, wallet.id!!) }
-            }*/
 }

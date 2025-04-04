@@ -1,12 +1,11 @@
 package com.banking.poc.domain.service
 
-import com.banking.poc.application.service.MovementService
+import com.banking.poc.application.port.outbound.repository.MovementRepositoryOutbound
 import com.banking.poc.domain.model.money.Money
 import com.banking.poc.domain.model.movement.Movement
 import com.banking.poc.domain.model.movement.MovementType
 import com.banking.poc.domain.model.wallet.Wallet
-import com.banking.poc.domain.repository.MovementRepository
-import com.banking.poc.utils.testData
+import com.banking.poc.utils.data.testData
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
@@ -15,8 +14,8 @@ import org.junit.jupiter.api.Test
 
 class MovementServiceTest {
 
-    private var movementRepository: MovementRepository = mockk()
-    private val movementService: MovementService = MovementServiceImpl(movementRepository)
+    private var movementRepository: MovementRepositoryOutbound = mockk()
+    private val movementService: MovementService = MovementService(movementRepository)
 
     @Test
     fun whenDoMovement_shouldCallMovementRepository() {

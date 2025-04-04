@@ -1,6 +1,5 @@
 package com.banking.poc.infrastructure.configuration
 
-import com.banking.poc.application.service.*
 import com.banking.poc.application.usecase.movement.WalletMovementUseCase
 import com.banking.poc.application.usecase.movement.WithdrawMovementUseCase
 import com.banking.poc.application.usecase.transfer.InternalTransferUseCase
@@ -9,6 +8,7 @@ import com.banking.poc.application.usecase.user.UserRegistryUseCase
 import com.banking.poc.application.usecase.wallet.WalletCreateUseCase
 import com.banking.poc.application.usecase.wallet.WalletDepositUseCase
 import com.banking.poc.application.usecase.wallet.WalletDetailsUseCase
+import com.banking.poc.domain.service.*
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder

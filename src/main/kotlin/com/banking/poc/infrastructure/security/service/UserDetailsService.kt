@@ -1,6 +1,6 @@
 package com.banking.poc.infrastructure.security.service
 
-import com.banking.poc.application.service.UserService
+import com.banking.poc.domain.service.UserService
 import com.banking.poc.infrastructure.security.dto.UserSecurity
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails

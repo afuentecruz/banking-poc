@@ -1,11 +1,9 @@
 package com.banking.poc.infrastructure.configuration
 
-import com.banking.poc.application.service.UserService
-import com.banking.poc.application.service.WalletService
-import com.banking.poc.domain.repository.MovementRepository
-import com.banking.poc.domain.repository.TransferRepository
-import com.banking.poc.domain.repository.UserRepository
-import com.banking.poc.domain.repository.WalletRepository
+import com.banking.poc.application.port.outbound.repository.MovementRepositoryOutbound
+import com.banking.poc.application.port.outbound.repository.TransferRepositoryOutbound
+import com.banking.poc.application.port.outbound.repository.UserRepositoryOutbound
+import com.banking.poc.application.port.outbound.repository.WalletRepositoryOutbound
 import com.banking.poc.domain.service.*
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -15,27 +13,27 @@ class ServiceConfiguration {
 
     @Bean
     fun userServiceImpl(
-        userRepository: UserRepository,
-    ): UserServiceImpl = UserServiceImpl(userRepository)
+        userRepository: UserRepositoryOutbound,
+    ): UserService = UserService(userRepository)
 
     @Bean
     fun walletServiceImpl(
-        walletRepository: WalletRepository
-    ): WalletServiceImpl = WalletServiceImpl(walletRepository)
+        walletRepository: WalletRepositoryOutbound
+    ): WalletService = WalletService(walletRepository)
 
     @Bean
     fun movementServiceImpl(
-        movementRepository: MovementRepository
-    ): MovementServiceImpl = MovementServiceImpl(movementRepository)
+        movementRepository: MovementRepositoryOutbound
+    ): MovementService = MovementService(movementRepository)
 
     @Bean
     fun transferServiceImpl(
-        transferRepository: TransferRepository
-    ): TransferServiceImpl = TransferServiceImpl(transferRepository)
+        transferRepositoryPort: TransferRepositoryOutbound
+    ): TransferService = TransferService(transferRepositoryPort)
 
     @Bean
     fun amlValidationServiceImpl(
         walletService: WalletService,
         userService: UserService
-    ): AmlValidationServiceImpl = AmlValidationServiceImpl(walletService, userService)
+    ): AmlValidationService = AmlValidationService(walletService, userService)
 }

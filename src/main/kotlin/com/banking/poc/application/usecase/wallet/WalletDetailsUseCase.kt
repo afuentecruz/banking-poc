@@ -1,11 +1,11 @@
 package com.banking.poc.application.usecase.wallet
 
-import com.banking.poc.application.service.AmlValidationService
-import com.banking.poc.application.service.UserService
-import com.banking.poc.application.service.WalletService
-import com.banking.poc.infrastructure.rest.wallet.dto.WalletBalanceResponse
-import com.banking.poc.infrastructure.rest.wallet.dto.WalletResponse
-import com.banking.poc.infrastructure.rest.wallet.dto.fromDomain
+import com.banking.poc.domain.dto.wallet.WalletBalanceResponse
+import com.banking.poc.domain.dto.wallet.WalletResponse
+import com.banking.poc.domain.dto.wallet.fromDomain
+import com.banking.poc.domain.service.AmlValidationService
+import com.banking.poc.domain.service.UserService
+import com.banking.poc.domain.service.WalletService
 
 class WalletDetailsUseCase(
     private val walletService: WalletService,

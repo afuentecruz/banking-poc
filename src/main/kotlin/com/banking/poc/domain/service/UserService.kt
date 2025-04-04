@@ -2,10 +2,10 @@ package com.banking.poc.domain.service
 
 import com.banking.poc.domain.exception.UsernameNotFoundException
 import com.banking.poc.domain.model.user.User
-import com.banking.poc.application.port.outbound.repository.UserRepositoryOutbound
+import com.banking.poc.application.port.outbound.repository.UserRepositoryPort
 
 class UserService(
-    private val userRepository: UserRepositoryOutbound,
+    private val userRepository: UserRepositoryPort,
 )  {
 
     fun findAll(): List<User> = userRepository.findAllUsers()

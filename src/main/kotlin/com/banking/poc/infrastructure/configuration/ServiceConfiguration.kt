@@ -1,9 +1,9 @@
 package com.banking.poc.infrastructure.configuration
 
-import com.banking.poc.application.port.outbound.repository.MovementRepositoryOutbound
-import com.banking.poc.application.port.outbound.repository.TransferRepositoryOutbound
-import com.banking.poc.application.port.outbound.repository.UserRepositoryOutbound
-import com.banking.poc.application.port.outbound.repository.WalletRepositoryOutbound
+import com.banking.poc.application.port.outbound.repository.MovementRepositoryPort
+import com.banking.poc.application.port.outbound.repository.TransferRepositoryPort
+import com.banking.poc.application.port.outbound.repository.UserRepositoryPort
+import com.banking.poc.application.port.outbound.repository.WalletRepositoryPort
 import com.banking.poc.domain.service.*
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -13,22 +13,22 @@ class ServiceConfiguration {
 
     @Bean
     fun userServiceImpl(
-        userRepository: UserRepositoryOutbound,
+        userRepository: UserRepositoryPort,
     ): UserService = UserService(userRepository)
 
     @Bean
     fun walletServiceImpl(
-        walletRepository: WalletRepositoryOutbound
+        walletRepository: WalletRepositoryPort
     ): WalletService = WalletService(walletRepository)
 
     @Bean
     fun movementServiceImpl(
-        movementRepository: MovementRepositoryOutbound
+        movementRepository: MovementRepositoryPort
     ): MovementService = MovementService(movementRepository)
 
     @Bean
     fun transferServiceImpl(
-        transferRepositoryPort: TransferRepositoryOutbound
+        transferRepositoryPort: TransferRepositoryPort
     ): TransferService = TransferService(transferRepositoryPort)
 
     @Bean

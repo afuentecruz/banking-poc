@@ -1,6 +1,6 @@
 package com.banking.poc.domain.service
 
-import com.banking.poc.application.port.outbound.repository.MovementRepositoryOutbound
+import com.banking.poc.application.port.outbound.repository.MovementRepositoryPort
 import com.banking.poc.domain.model.money.Money
 import com.banking.poc.domain.model.movement.Movement
 import com.banking.poc.domain.model.movement.MovementType
@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test
 
 class MovementServiceTest {
 
-    private var movementRepository: MovementRepositoryOutbound = mockk()
+    private var movementRepository: MovementRepositoryPort = mockk()
     private val movementService: MovementService = MovementService(movementRepository)
 
     @Test

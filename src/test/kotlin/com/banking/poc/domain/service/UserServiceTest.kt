@@ -1,6 +1,6 @@
 package com.banking.poc.domain.service
 
-import com.banking.poc.application.port.outbound.repository.UserRepositoryOutbound
+import com.banking.poc.application.port.outbound.repository.UserRepositoryPort
 import com.banking.poc.domain.exception.UserNotFoundException
 import com.banking.poc.domain.exception.UsernameAlreadyExistsException
 import com.banking.poc.domain.exception.UsernameNotFoundException
@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test
 
 class UserServiceTest {
 
-    private var userRepository: UserRepositoryOutbound = mockk()
+    private var userRepository: UserRepositoryPort = mockk()
 
     private val userService: UserService = UserService(userRepository)
 

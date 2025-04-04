@@ -9,11 +9,11 @@ import com.banking.poc.domain.model.user.User
 import com.banking.poc.domain.model.wallet.Wallet
 import com.banking.poc.domain.model.wallet.addAmount
 import com.banking.poc.domain.model.wallet.minusAmount
-import com.banking.poc.application.port.outbound.repository.WalletRepositoryOutbound
+import com.banking.poc.application.port.outbound.repository.WalletRepositoryPort
 import java.math.BigDecimal
 
 class WalletService(
-    private val walletRepository: WalletRepositoryOutbound
+    private val walletRepository: WalletRepositoryPort
 ) {
 
     fun createWallet(user: User): Wallet = walletRepository.saveWallet(

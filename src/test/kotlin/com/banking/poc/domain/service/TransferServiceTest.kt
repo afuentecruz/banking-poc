@@ -1,6 +1,6 @@
 package com.banking.poc.domain.service
 
-import com.banking.poc.application.port.outbound.repository.TransferRepositoryOutbound
+import com.banking.poc.application.port.outbound.repository.TransferRepositoryPort
 import com.banking.poc.domain.model.money.Money
 import com.banking.poc.domain.model.transfer.Transfer
 import com.banking.poc.domain.model.transfer.TransferStatus
@@ -14,7 +14,7 @@ import org.springframework.dao.DataIntegrityViolationException
 
 class TransferServiceTest {
 
-    private var transferRepositoryPort: TransferRepositoryOutbound = mockk()
+    private var transferRepositoryPort: TransferRepositoryPort = mockk()
 
     private val transferService: TransferService = TransferService(
         transferRepositoryPort

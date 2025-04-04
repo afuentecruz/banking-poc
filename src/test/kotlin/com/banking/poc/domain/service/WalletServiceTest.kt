@@ -1,6 +1,6 @@
 package com.banking.poc.domain.service
 
-import com.banking.poc.application.port.outbound.repository.WalletRepositoryOutbound
+import com.banking.poc.application.port.outbound.repository.WalletRepositoryPort
 import com.banking.poc.domain.exception.UserWalletNotFoundException
 import com.banking.poc.domain.exception.WalletCurrencyNotFoundException
 import com.banking.poc.domain.exception.WalletNotFoundException
@@ -20,7 +20,7 @@ import java.math.BigDecimal
 
 class WalletServiceTest {
 
-    private var walletRepository: WalletRepositoryOutbound = mockk()
+    private var walletRepository: WalletRepositoryPort = mockk()
 
     private val walletService: WalletService = WalletService(walletRepository)
 

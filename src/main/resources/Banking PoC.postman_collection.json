@@ -1,0 +1,612 @@
+{
+	"info": {
+		"_postman_id": "34f33e45-6e8e-4ca5-85ff-0254bf07f8f1",
+		"name": "Banking PoC",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28595737"
+	},
+	"item": [
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "user A",
+					"item": [
+						{
+							"name": "registry A",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\" : \"first@mail.com\", \n    \"password\" : \"password\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/users/registry",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"users",
+										"registry"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "login A",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var res  = pm.response.json()",
+											"pm.environment.set(\"bearerTokenUserA\", res.token);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\" : \"first@mail.com\", \n    \"password\" : \"password\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/login",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"login"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "user B",
+					"item": [
+						{
+							"name": "registry B",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\" : \"second@mail.com\", \n    \"password\" : \"password\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/users/registry",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"users",
+										"registry"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "login B",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var res  = pm.response.json()",
+											"pm.environment.set(\"bearerTokenUserB\", res.token);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\" : \"second@mail.com\", \n    \"password\" : \"password\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/login",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"login"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "find all",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearerTokenUserA}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/users",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "wallets",
+			"item": [
+				{
+					"name": "wallet A",
+					"item": [
+						{
+							"name": "create wallet A",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{bearerTokenUserA}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/wallets/create",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"wallets",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deposit wallet A",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{bearerTokenUserA}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"amount\" : 11.00, \n    \"currency\": \"EUR\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/wallets/:walletId/deposit",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"wallets",
+										":walletId",
+										"deposit"
+									],
+									"variable": [
+										{
+											"key": "walletId",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get wallet A balance",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{bearerTokenUserA}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/wallets/:walletId/balance",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"wallets",
+										":walletId",
+										"balance"
+									],
+									"variable": [
+										{
+											"key": "walletId",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "wallet B",
+					"item": [
+						{
+							"name": "create wallet B",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{bearerTokenUserB}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/wallets/create",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"wallets",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deposit wallet B",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{bearerTokenUserB}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"amount\" : 7.00, \n    \"currency\": \"EUR\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/wallets/:walletId/deposit",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"wallets",
+										":walletId",
+										"deposit"
+									],
+									"variable": [
+										{
+											"key": "walletId",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get wallet B balance",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{bearerTokenUserB}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/wallets/:walletId/balance",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"wallets",
+										":walletId",
+										"balance"
+									],
+									"variable": [
+										{
+											"key": "walletId",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "transfers",
+			"item": [
+				{
+					"name": "transfer from A to B",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearerTokenUserA}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"amount\" : \"8.00\",\n    \"currency\" : \"EUR\",\n    \"from\" : 1,\n    \"to\" : 2\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/transfers/internal",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"transfers",
+								"internal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "transfer from B to A",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearerTokenUserB}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"amount\" : \"3.00\",\n    \"currency\" : \"EUR\",\n    \"from\" : 2,\n    \"to\" : 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/transfers/internal",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"transfers",
+								"internal"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "movements",
+			"item": [
+				{
+					"name": "get wallet A movements",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearerTokenUserA}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/movements/wallet/:walletId",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"movements",
+								"wallet",
+								":walletId"
+							],
+							"variable": [
+								{
+									"key": "walletId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get wallet B movements",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{bearerTokenUserB}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/movements/wallet/:walletId",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"movements",
+								"wallet",
+								":walletId"
+							],
+							"variable": [
+								{
+									"key": "walletId",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "bearerTokenUserA",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "bearerTokenUserB",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
